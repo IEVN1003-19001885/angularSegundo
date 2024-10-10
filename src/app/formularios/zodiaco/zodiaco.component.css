@@ -1,0 +1,30 @@
+/* Estilos adaptados con Tailwind */
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+.formulario {
+    border: 2px solid #4A5568; /* Tailwind border-gray-700 */
+    padding: 20px;
+    width: 400px;
+}
+
+.formulario h2, .formulario h3 {
+    text-align: center;
+}
+
+.resultado {
+    border-left: 2px solid #4A5568;
+    margin-left: 20px;
+    padding: 20px;
+}
+
+.signo-imagen {
+    display: block;
+    margin: 20px auto;
+    width: 200px;
+    height: 200px;
+}
