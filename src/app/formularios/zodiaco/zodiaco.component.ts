@@ -5,7 +5,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 @Component({
   selector: 'app-zodiaco',
   standalone: true,
-  imports: [ CommonModule, ReactiveFormsModule ],
+  imports: [ CommonModule, ReactiveFormsModule],
   templateUrl: './zodiaco.component.html',
   styleUrl: './zodiaco.component.css'
 })
