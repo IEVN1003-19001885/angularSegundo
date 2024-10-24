@@ -1,0 +1,97 @@
+<div class="flex justify-between"><!-- Formulario --><div class="w-1/4 bg-white p-4 rounded-lg shadow-md">
+        <h2 class="text-lg font-semibold mb-4 text-gray-900 dark:text-black">Empleados</h2>
+        <form [formGroup]="formGroup">
+        <div class="grid grid-cols-1 gap-4">
+<div>
+<label for="matricula" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Matrícula</label>
+<input type="text" id="matricula" formControlName="matricula" placeholder="Matrícula" 
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 
+        focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 
+        dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+</div>
+<div>
+<label for="nombre" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Nombre</label>
+<input type="text" id="nombre" formControlName="nombre" placeholder="Nombre" 
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 
+        focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 
+        dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+</div>
+<div>
+<label for="correo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Correo</label>
+<input type="email" id="correo" formControlName="correo" placeholder="Correo" 
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 
+        focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 
+        dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+</div>
+<div>
+<label for="edad" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Edad</label>
+<input type="number" id="edad" formControlName="edad" placeholder="Edad" 
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 
+        focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 
+        dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+</div>
+<div>
+<label for="horasTrabajadas" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Horas trabajadas</label>
+<input type="number" id="horasTrabajadas" formControlName="horasTrabajadas" placeholder="Horas trabajadas" 
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 
+        focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 
+        dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+</div>
+<div class="flex space-x-2">
+<button (click)="registrarEmpleado()" type="button" 
+        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 
+        font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 
+        dark:focus:ring-blue-800">Registrar</button>
+</div>
+        </div>
+        </form>
+</div>
+
+<div class="w-3/4 ml-4">
+        <button (click)="imprimirEmpleados()" 
+                class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 
+                font-medium rounded-lg text-sm px-5 py-2.5 mb-4 dark:bg-green-600 dark:hover:bg-green-700 
+                dark:focus:ring-green-800">Imprimir Tabla</button>
+
+      <div *ngIf="mostrarTabla" class="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <tr>
+                <th scope="col" class="px-6 py-3">Matrícula</th>
+                <th scope="col" class="px-6 py-3">Nombre</th>
+                <th scope="col" class="px-6 py-3">Correo</th>
+                <th scope="col" class="px-6 py-3">Edad</th>
+                <th scope="col" class="px-6 py-3">Horas Trabajadas</th>
+                <th scope="col" class="px-6 py-3">Horas por Pagar</th>
+                <th scope="col" class="px-6 py-3">Pago Horas Extras</th>
+                <th scope="col" class="px-6 py-3">Subtotal</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let empleado of empleados" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <td class="px-6 py-4">{{ empleado.matricula }}</td>
+                <td class="px-6 py-4">{{ empleado.nombre }}</td>
+                <td class="px-6 py-4">{{ empleado.correo }}</td>
+                <td class="px-6 py-4">{{ empleado.edad }}</td>
+                <td class="px-6 py-4">{{ empleado.horasTrabajadas }}</td>
+              <td class="px-6 py-4">{{ empleado.horasPorPagar * 70 | currency:'MXN' }}</td>
+              <td class="px-6 py-4">{{ empleado.horasExtras * 140 | currency:'MXN' }}</td>
+                <td class="px-6 py-4">{{ empleado.subtotal | currency:'MXN' }}</td>
+        </tr>
+        </tbody>
+        </table>
+        <h3 class="font-bold mt-2 text-gray-900 dark:text-black">Total a Pagar: {{ total | currency:'MXN' }}</h3>
+
+        <div class="mt-4 space-y-2">
+                <button (click)="modificarEmpleado()" type="button" 
+                class="text-white bg-yellow-700 hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-yellow-300 
+                font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-yellow-600 dark:hover:bg-yellow-700 
+                dark:focus:ring-yellow-800">Modificar</button>
+        <button (click)="eliminarEmpleado()" 
+                class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 
+                font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-red-600 dark:hover:bg-red-700 
+                dark:focus:ring-red-800">Eliminar</button>
+        </div>
+        </div>
+</div>
+</div>
