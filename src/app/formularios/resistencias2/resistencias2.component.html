@@ -1,132 +1,80 @@
-<h2 class="text-center text-lg font-bold mb-4">Resistencias</h2>
+<div class="max-w-2xl mx-auto bg-gray-100 p-8 rounded-lg shadow-lg">
+    <h1 class="text-2xl font-semibold mb-6 text-center text-indigo-600">Resistencias</h1>
 
-<div class="mx-auto p-4 border border-gray-200 rounded-lg max-w-4xl">
-
-    <div class="grid grid-cols-5 gap-6 mb-4">
-        <!-- Colores -->
-        <div></div>
+    <form [formGroup]="formulario" class="grid grid-cols-3 gap-4">
+        <!-- Color 1 -->
         <div>
-            <form>
-                <label for="color1" class="block mb-2 text-sm font-medium text-gray-900">Color 1</label>
-                <select id="color1" name="color1" [(ngModel)]="color1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 block w-full p-2.5">
-                    <option value="negro">Negro</option>
-                    <option value="cafe">Café</option>
-                    <option value="rojo">Rojo</option>
-                    <option value="naranja">Naranja</option>
-                    <option value="amarillo">Amarillo</option>
-                    <option value="verde">Verde</option>
-                    <option value="azul">Azul</option>
-                    <option value="violeta">Morado</option>
-                    <option value="gris">Gris</option>
-                    <option value="blanco">Blanco</option>
-                </select>
-            </form>
+            <label for="color1" class="block text-gray-800 font-medium mb-1 text-center">Color 1</label>
+            <select formControlName="color1" class="w-full p-2 border border-gray-400 rounded-md text-center">
+                <option value="" disabled selected>Color1</option>
+                <option *ngFor="let color of colores" [value]="color">{{ color }}</option>
+            </select>
         </div>
+
+        <!-- Color 2 -->
+        <div>
+            <label for="color2" class="block text-gray-800 font-medium mb-1 text-center">Color 2</label>
+            <select formControlName="color2" class="w-full p-2 border border-gray-400 rounded-md text-center">
+                <option value="" disabled selected>Color2</option>
+                <option *ngFor="let color of colores" [value]="color">{{ color }}</option>
+            </select>
+        </div>
+
 
         <div>
-            <form>
-                <label for="color2" class="block mb-2 text-sm font-medium text-gray-900">Color 2</label>
-                <select id="color2" name="color2" [(ngModel)]="color2" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 block w-full p-2.5">
-                    <option value="negro">Negro</option>
-                    <option value="cafe">Café</option>
-                    <option value="rojo">Rojo</option>
-                    <option value="naranja">Naranja</option>
-                    <option value="amarillo">Amarillo</option>
-                    <option value="verde">Verde</option>
-                    <option value="azul">Azul</option>
-                    <option value="violeta">Morado</option>
-                    <option value="gris">Gris</option>
-                    <option value="blanco">Blanco</option>
-                </select>
-            </form>
+            <label for="color3" class="block text-gray-800 font-medium mb-1 text-center">Color 3</label>
+            <select formControlName="color3" class="w-full p-2 border border-gray-400 rounded-md text-center">
+                <option value="" disabled selected>Color3</option>
+                <option *ngFor="let color of colores" [value]="color">{{ color }}</option>
+            </select>
         </div>
 
-        <div>
-            <form>
-                <label for="color3" class="block mb-2 text-sm font-medium text-gray-900">Color 3</label>
-                <select id="color3" name="color3" [(ngModel)]="color3" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 block w-full p-2.5">
-                    <option value="negro">Negro</option>
-                    <option value="cafe">Café</option>
-                    <option value="rojo">Rojo</option>
-                    <option value="naranja">Naranja</option>
-                    <option value="amarillo">Amarillo</option>
-                    <option value="verde">Verde</option>
-                    <option value="azul">Azul</option>
-                    <option value="violeta">Morado</option>
-                    <option value="gris">Gris</option>
-                    <option value="blanco">Blanco</option>
-                </select>
-            </form>
+        <!-- Tolerancia -->
+        <div class="col-span-3 flex justify-center gap-4 my-4">
+            <label class="flex items-center">
+                <input type="radio" formControlName="tolerancia" [value]="'Oro'" class="form-radio text-yellow-600 mr-1">
+                <span class="text-gray-800">Oro</span>
+            </label>
+            <label class="flex items-center">
+                <input type="radio" formControlName="tolerancia" [value]="'Plata'" class="form-radio text-gray-600 mr-1">
+                <span class="text-gray-800">Plata</span>
+            </label>
         </div>
-        <div></div>
-    </div>
 
-    <!-- Tolerancia -->
-    <div class="grid grid-cols-5 gap-6 mb-4">
-        <div></div>
-        <div class="flex items-center">
-            <input id="oro" type="radio" [(ngModel)]="tolerancia" name="tolerancia" value="oro" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300">
-            <label for="oro" class="ms-2 text-sm font-medium text-black-900">Dorado</label>
-        </div>
-        <div class="flex items-center">
-            <input id="plata" type="radio" [(ngModel)]="tolerancia" name="tolerancia" value="plata" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300">
-            <label for="plata" class="ms-2 text-sm font-medium text-black-900">Plata</label>
-        </div>
-    </div>
-
-    <!-- Botones -->
-    <div class="grid grid-cols-5 gap-6 mb-4">
-        <div></div>
-        <div class="flex flex-col space-y-2">
-            <button (click)="subImprimeCalculo()" class="text-white bg-blue-500 hover:bg-blue-600 font-medium rounded-lg text-sm px-5 py-2.5">
+        <!-- Registrar Button -->
+        <div class="col-span-3 flex justify-center">
+            <button (click)="registrar()" class="bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-400">
                 Registrar
             </button>
-            <button (click)="mostrarResultadosGuardados()" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
-                Imprimir Resultados
-            </button>
         </div>
-    </div>
+    </form>
 
-    <!-- Tabla -->
-    <div class="grid grid-cols-5 gap-6">
-        <div class="col-span-3 col-start-2 overflow-x-auto">
-            <table class="min-w-full text-sm text-left text-gray-500">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-50">
-                    <tr>
-                        <th class="py-3 px-6">Color 1</th>
-                        <th class="py-3 px-6">Color 2</th>
-                        <th class="py-3 px-6">Color 3</th>
-                        <th class="py-3 px-6">Tolerancia</th>
-                        <th class="py-3 px-6">Valor</th>
-                        <th class="py-3 px-6">Valor Mínimo</th>
-                        <th class="py-3 px-6">Valor Máximo</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let resultado of resultadosGuardados" class="bg-white border-b">
-                        <td class="py-4 px-6">
-                            <div [ngStyle]="{'background-color': getColor1(resultado)}" class="w-8 h-8 inline-block">{{color1}}</div>
-                        </td>
-                        <td class="py-4 px-6">
-                            <div [ngStyle]="{'background-color': getColor2(resultado)}" class="w-8 h-8 inline-block">{{color2}}</div>
-                        </td>
-                        <td class="py-4 px-6">
-                            <div [ngStyle]="{'background-color': getColor3(resultado)}" class="w-8 h-8 inline-block">{{color3}}</div>
-                        </td>
-                        <td class="py-4 px-6">{{ resultado.tolerancia }}</td>
-                        <td class="py-4 px-6">{{ resistencia }}</td>
-                        <td class="py-4 px-6">{{ resistenciaMinima }}</td>
-                        <td class="py-4 px-6">{{ resistenciaMaxima }}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-    <!-- Botón Limpiar -->
-    <!--<div class="text-center mt-4">
-        <button (click)="limpiarRegistro()" class="text-white bg-red-500 hover:bg-red-600 font-medium rounded-lg text-sm px-5 py-2.5">
-            Limpiar tabla
-        </button>
-    </div>-->
+    <!-- Resultados Table -->
+    <section class="mt-8">
+        <h2 class="text-lg font-semibold mb-4 text-gray-800 text-center">Resultados</h2>
+        <table class="w-full border border-gray-400 text-center">
+            <thead>
+                <tr>
+                    <th class="px-2 py-1 bg-gray-200 text-gray-800">Color1</th>
+                    <th class="px-2 py-1 bg-gray-200 text-gray-800">Color2</th>
+                    <th class="px-2 py-1 bg-gray-200 text-gray-800">Color3</th>
+                    <th class="px-2 py-1 bg-gray-200 text-gray-800">Tolerancia</th>
+                    <th class="px-2 py-1 bg-gray-200 text-gray-800">Valor</th>
+                    <th class="px-2 py-1 bg-gray-200 text-gray-800">Valor Máximo</th>
+                    <th class="px-2 py-1 bg-gray-200 text-gray-800">Valor Mínimo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let resistencia of resultado">
+                    <td class="px-2 py-1" [style.background]="obtenerColorHex(resistencia.color1)">{{ resistencia.color1 }}</td>
+                    <td class="px-2 py-1" [style.background]="obtenerColorHex(resistencia.color2)">{{ resistencia.color2 }}</td>
+                    <td class="px-2 py-1" [style.background]="obtenerColorHex(resistencia.color3)">{{ resistencia.color3 }}</td>
+                    <td class="px-2 py-1">{{ resistencia.tolerancia }}</td>
+                    <td class="px-2 py-1">{{ resistencia.valor }}</td>
+                    <td class="px-2 py-1">{{ resistencia.valorMaximo }}</td>
+                    <td class="px-2 py-1">{{ resistencia.valorMinimo }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
 </div>
